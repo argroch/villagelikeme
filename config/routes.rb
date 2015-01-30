@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root 'landing#index'
 
-  post '/' => 'landing#index'
+  post '/thanks' => 'landing#thanks'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
