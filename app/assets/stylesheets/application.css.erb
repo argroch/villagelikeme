@@ -14,9 +14,30 @@
  *= require_self
  */
 
+body {
+	background: url(<%= asset_path 'astoria-brooklyn.jpg' %>) no-repeat;
+	background-position: center center;
+	-webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+	background-attachment:fixed;
+	font-family: "Oswald", sans-serif;
+}
+
+h1 {
+	font-family: 'Montserrat Alternates', sans-serif;
+}
+
+p {
+	font-family: 'Montserrat Alternates', sans-serif;
+	
+}
+
 .main-box{
 	width: 500px;
 	padding: 20px;
+	background: rgba(255,255,255,0.8);
 }
 
 .page-center{
