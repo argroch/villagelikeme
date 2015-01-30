@@ -14,8 +14,9 @@
  *= require_self
  */
 
-.borderline{
-	border: 1px solid black;
+.main-box{
+	width: 500px;
+	padding: 20px;
 }
 
 .page-center{
@@ -36,4 +37,15 @@
 
 .center-it {
 	text-align: center;
+}
+
+.borderline {
+	border: 1px solid black;
+}
+
+@media screen and (max-width: 550px){
+	.main-box{
+	width: 350px;
+	padding: 20px;
+}
 }

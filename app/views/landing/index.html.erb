@@ -1,17 +1,18 @@
 <div class="page-center">
-	<div class="row">
-	    <div class="col-md-12 borderline">
-				<h1>A Village Like Me</h1>
-				<div>
-					<%= form_tag(root_path) do %>
-					<%= text_field_tag :current_city, nil, placeholder: "My Neighborhood, City", class: "placehold-text form-control form-margin", autofocus: true %>
-					<%= text_field_tag :moving_to, nil, placeholder: "And I'm Moving To...", class: "placehold-text form-control form-margin" %>
-					<%= text_field_tag :email, nil, placeholder: "My Email", class: "placehold-text form-control form-margin" %>
-					<div class="center-it">
-						<button class="btn btn-danger">Move In</button>
-					</div>
-					<% end %>
-				</p>
-	    </div>
+	<div class="main-box borderline">
+		<div class="center-it">
+			<h1>A Village Like Me</h1>
+		</div>
+		<div>
+				<%= form_tag(root_path) do %>
+				<%= text_field_tag :current_city, nil, placeholder: "My Neighborhood, City", class: "placehold-text form-control form-margin", autofocus: true %>
+				<%= text_field_tag :moving_to, nil, placeholder: "And I'm Moving To...", class: "placehold-text form-control form-margin" %>
+				<%= text_field_tag :email, nil, placeholder: "My Email", class: "placehold-text form-control form-margin" %>
+				<div class="center-it">
+					<button class="btn btn-danger">Move In</button>
+				</div>
+				<% end %>
+			</p>
+  	</div>
 	</div>
 </div>
