@@ -3,17 +3,17 @@
 		<div class="center-it">
 			<h1>A Village Like Me</h1>
 			<p>
-				You know that neighborhood you'd love to live in if you could stay in your current city? We'll help you find one just like it in the city you're eyeing for relocation!
+				You know that neighbourhood you absolutely love? The one you couldn't do without? Let us help you find one just like it another city!
 			</p>
 		</div>
 		<div>
 			<%= form_tag('/thanks') do %>
 
-				<%= text_field_tag :current_city, nil, placeholder: "My Neighborhood, City", class: "placehold-text form-control form-margin", autofocus: true %>
-				<%= text_field_tag :moving_to, nil, placeholder: "And I'm Moving To...", class: "placehold-text form-control form-margin" %>
+				<%= text_field_tag :current_city, nil, placeholder: "A Neighborhood, City", class: "placehold-text form-control form-margin", autofocus: true %>
+				<%= text_field_tag :moving_to, nil, placeholder: "A different City of interest", class: "placehold-text form-control form-margin" %>
 				<%= text_field_tag :email, nil, placeholder: "My Email", class: "placehold-text form-control form-margin" %>
 				<div class="center-it">
-					<button class="btn btn-danger">Move In</button>
+					<button class="btn btn-danger">Find My Scene!</button>
 				</div>
 			<% end %>
   	</div>
