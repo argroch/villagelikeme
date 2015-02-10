@@ -5,12 +5,15 @@
 			<p>
 				Thanks for stopping by!
 			</p>
-			<p>
-				We'll be sending you an e-mail with the name of a neighborhood you'll love in <%= @mover.moving_to %>!
-			</p>
+			<% if @answered == false %>
+				<p>
+					We'll be sending you an e-mail with the name of a neighborhood you'll love in <%= @mover.moving_to %>!
+				</p>
+			<% else %>
+				<p>
+					We'll be in touch!
+				</p>
+			<% end %>
 		</div>
-		<div>
-
-  	</div>
 	</div>
 </div>
