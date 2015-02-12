@@ -1,0 +1,35 @@
+<div class="page-center">
+	<div class="main-box">
+		<div class="center-it">
+			<% if @no_scene == true %>
+				<div>
+					<p>
+						Dang! Doesn't look like we have data yet on <%= @mover.moving_to %>. Leave us your email address and we'll let you know your where your perfect neighborhood is...as soon as we do! 
+					</p>
+				</div>
+			<% else %>
+				<div>
+					<p>
+						We think <%= @your_scene %>, <%= @mover.moving_to %> would be perfect for you!
+					</p>
+					<p>
+						This is just the beginning! New features will be coming soon! Leave us your email address if you want to stay updated.
+					</p>
+				</div>
+			<% end %>
+			<div>
+				<%= form_tag('/thanks') do %>
+					<div>
+						<%= text_field_tag :email, nil, placeholder: "Email Address", class: "placehold-text form-control form-margin" %>
+					</div>
+					<div class="cant-see-me">
+						<%= number_field_tag :id, @mover.id %>
+					</div>
+					<div class="center-it">
+						<button class="btn btn-primary">We'll Let You Know</button>
+					</div>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>
