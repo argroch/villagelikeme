@@ -35,7 +35,7 @@ neighborhoods = Neighborhood.create([{ name: 'City Park West' , city_id: 1 , ass
 	                               { name: 'Regis' , city_id: 1 , associated_address: 'Regis, Denver' }, 
 	                               { name: 'Sloan Lake' , city_id: 1 , associated_address: 'Sloan Lake, Denver' }, 
 	                               { name: 'Country Club' , city_id: 1 , associated_address: 'Country Club, Denver' }])
-
+sleep(5)
 #NYC
 neighborhoods = Neighborhood.create([{ name: 'Soho' , city_id: 2 , associated_address: 'Soho, New York City' }, 
 	                               { name: 'Brooklyn' , city_id: 2 , associated_address: 'Brooklyn, New York City' }, 
@@ -56,6 +56,7 @@ neighborhoods = Neighborhood.create([{ name: 'Soho' , city_id: 2 , associated_ad
 	                               { name: 'Theater District' , city_id: 2 , associated_address: 'Theater District, New York City' }, 
 	                               { name: 'Diamond District' , city_id: 2 , associated_address: 'Diamond District, New York City' }])
 
+sleep(5)
 
 #San Diego
 neighborhoods = Neighborhood.create([{ name: 'Midtown' , city_id: 3, associated_address: 'Midtown, San Diego' }, 
@@ -77,6 +78,7 @@ neighborhoods = Neighborhood.create([{ name: 'Midtown' , city_id: 3, associated_
 	                               { name: 'Sherman Heights' , city_id: 3, associated_address: 'Sherman Heights, San Diego'  }, 
 	                               { name: 'Torrey Highlands' , city_id: 3, associated_address: 'Torrey Highlands, San Diego'  }])
 
+sleep(5)
 
 #Atlanta
 neighborhoods = Neighborhood.create([{ name: 'Midtown' , city_id: 4, associated_address: 'Midtown, Atlanta'}, 
@@ -97,6 +99,7 @@ neighborhoods = Neighborhood.create([{ name: 'Midtown' , city_id: 4, associated_
 	                               { name: 'Cabbagetown' , city_id: 4, associated_address: 'Cabbagetown, Atlanta' }, 
 	                               { name: 'Morningside' , city_id: 4, associated_address: 'Morningside, Atlanta' }, 
 	                               { name: 'Atkins Park' , city_id: 4, associated_address: 'Atkins Park, Atlanta' }])
+sleep(5)
 
 #Portland 
 	                  
@@ -118,6 +121,8 @@ neighborhoods = Neighborhood.create([{ name: 'Pettygrove' , city_id: 5, associat
 	                               { name: 'Hollywood' , city_id: 5, associated_address: 'Hollywood, Portland' }, 
 	                               { name: 'North Portland' , city_id: 5, associated_address: 'North Portland, Portland' }, 
 	                               { name: 'Nob Hill' , city_id: 5, associated_address: 'Nob Hill, Portland' }])
+sleep(5)
+
 #Austin
 	                  
 neighborhoods = Neighborhood.create([{ name: 'North Loop' , city_id: 6, associated_address: 'North Loop, Austin' }, 
@@ -134,6 +139,8 @@ neighborhoods = Neighborhood.create([{ name: 'North Loop' , city_id: 6, associat
 	                               { name: 'Lago Vista' , city_id: 6, associated_address: 'Lago Vista, Austin' }, 
 	                               { name: 'The Triangle' , city_id: 6, associated_address: 'The Triangle, Austin' }, 
 	                               { name: 'Highland Park West' , city_id: 6, associated_address: 'Highland Park West, Austin' }]) 
+sleep(5)
+
 #Seattle 
 	              
 neighborhoods = Neighborhood.create([{ name: 'West Seattle' , city_id: 7, associated_address: 'West Seattle, Seattle' }, 
@@ -154,6 +161,8 @@ neighborhoods = Neighborhood.create([{ name: 'West Seattle' , city_id: 7, associ
 	                               { name: 'West Lake' , city_id: 7, associated_address: 'West Lake, Seattle' }, 
 	                               { name: 'East Lake' , city_id: 7, associated_address: 'East Lake, Seattle' }, 
 	                               { name: 'Belltown' , city_id: 7, associated_address: 'Belltown, Seattle' }])
+sleep(5)
+
 #Boston
 neighborhoods = Neighborhood.create([{ name: 'Chinatown' , city_id: 8, associated_address: 'Chinatown, Boston' }, 
 	                               { name: 'Beacon Hill' , city_id: 8, associated_address: 'Beacon Hill, Boston' }, 
@@ -172,6 +181,7 @@ neighborhoods = Neighborhood.create([{ name: 'Chinatown' , city_id: 8, associate
 	                               { name: 'Allston' , city_id: 8, associated_address: 'Allston, Boston' }, 
 	                               { name: 'Hyde Park' , city_id: 8, associated_address: 'Hyde Park, Boston' }, 
 	                               { name: 'Mattapan' , city_id: 8, associated_address: 'Mattapan, Boston' }])
+sleep(5)
 
 #Madison
 neighborhoods = Neighborhood.create([{ name: 'Middleton' , city_id: 9, associated_address: 'Middleton, Madison, WI' }, 
@@ -191,6 +201,7 @@ neighborhoods = Neighborhood.create([{ name: 'Middleton' , city_id: 9, associate
 	                               { name: 'Nakoma League' , city_id: 9, associated_address: 'Nakoma League, Madison, WI' }, 
 	                               { name: 'Sherman' , city_id: 9, associated_address: 'Sherman, Madison, WI' }, 
 	                               { name: 'Greenbush' , city_id: 9, associated_address: 'Greenbush, Madison, WI' }])
+sleep(5)
 
 #Arlington
 neighborhoods = Neighborhood.create([{ name: 'Douglas Park' , city_id: 10, associated_address: 'Douglas Park, Arlington, VA' }, 
