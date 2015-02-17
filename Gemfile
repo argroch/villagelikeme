@@ -14,6 +14,11 @@ group :production do
 	gem 'rails_12factor'
 end
 
+#Geocoder for use in neighborhood comparison
+gem 'geocoder'
+
+#httparty for the rake task querying zillow api (right now, maybe for other api calls later)
+gem 'httparty'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets

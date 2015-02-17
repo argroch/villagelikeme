@@ -22,52 +22,42 @@ class LandingController < ApplicationController
   	@mover = Mover.new
   	@mover.fave_hood = params[:fave_hood]
   	@mover.current_city = params[:current_city]
-  	@mover.moving_to = params[:moving_to]
-		@mover.save
-
-		@your_scene = ""
-		@no_scene = false
-
-		denver = ["Skyland", "Park Hill",	"Stapleton",	"Downtown",	"Lincoln Park",	"Whitter"]
-		nyc = ["Harlem",	"Brooklyn",	"Manhattan",	"SoHo",	"Greenwich Village",	"East Village"]
-		san_diego = ["Hillcrest",	"University Heights",	"Midtown",	"Mission Hills",	"North Park", "Pacific Beach"]
-		atlanta = ["West End",	"Inman Park",	"East Atlanta",	"Virginia Highlands",	"Midtown",	"Little 5 Points"]
-		portland = ["Downtown",	"Cedar Mill", "Mt. Tabor",	"Gladstone",	"Happy Valley",	"Lake Oswego East"]
-		austin = ["Tarrytown",	"Belmont",	"The Triangle",	"Highland Park West",	"Blackland",	"Bouldin"]
-		seattle =["West Seattle",	"Magnolia",	"Beacon Hill",	"Cascade",	"Ravenna",	"Rainier-Seward Park"]
-		boston = ["Beacon Hill",	"West End",	"Back Bay",	"Charlestown",	"Cambridge",	"Park Square"]
-		madison = ["Wirth Court Park",	"Olbrich",	"Starkweather", "Circle Park",	"Evergreen",	"Hawthorne Park"]
-		iowa_city = ["Lucas Farms",	"Shimek",	"Washington Hills",	"Friendship",	"Walden Woods",	"Walnut Ridge"]
-		arlington = ["Raleigh Court",	"Old Southwest",	"Belmont",	"Washington Park",	"Wildwood",	"Westview Terrace"]
-
-
-		case @mover.moving_to.downcase
-			when "denver"
-				@your_scene = denver[rand(denver.length-1)]
-			when "new york city" || "new york" || "nyc"
-				@your_scene = nyc[rand(nyc.length-1)]
-			when "san diego"
-				@your_scene = san_diego[rand(san_diego.length-1)]
-			when "atlanta"
-				@your_scene = atlanta[rand(atlanta.length-1)]
-			when "portland"
-				@your_scene = portland[rand(portland.length-1)]
-			when "austin"
-				@your_scene = austin[rand(austin.length-1)]
-			when "seattle"
-				@your_scene = seattle[rand(seattle.length-1)]
-			when "boston"
-				@your_scene = boston[rand(boston.length-1)]
-			when "madison"
-				@your_scene = madison[rand(madison.length-1)]
-			when "iowa city"
-				@your_scene = iowa_city[rand(iowa_city.length-1)]
-			when "arlington"
-				@your_scene = arlington[rand(arlington.length-1)]
-			else
-				@no_scene = true
+  	@mover.full_hood_address= [@mover.fave_hood,@mover.current_city].join(', ')
+  	if params[:moving_to].downcase == "nyc" 
+  		@mover.moving_to = "New York City"
+  	elsif params[:moving_to].downcase == "new york"
+  		@mover.moving_to = "New York City"
+  	else
+  		@mover.moving_to = params[:moving_to]
+  	end
+	
+	lon = @mover.longitude
+	lat = @mover.latitude
+	url = "http://api.walkscore.com/score?format=xml&lat=#{lat}&lon=#{lon}&wsapikey=ffd1c56f9abcf84872116b4cc2dfcf31"
+	xml = HTTParty.get(url)
+	data = xml.parsed_response
+	@fave_walk_score = data['result']['walkscore'].to_i
+    
+	@your_scene = ""
+	@no_scene = false
+	@walk_score_dif=100
+    
+	city_id=City.where(name: @mover.moving_to.downcase)
+	
+	if !city_id 
+		@no_scene = true
+	else
+		Neighborhood.where(city_id: city_id.take.id).each do |hood|
+			d = @fave_walk_score.to_i-hood.walk_score
+			d = d*(-1) if d < 0
+			if d < @walk_score_dif
+				@your_scene = hood.name
+				@walk_score_dif = d
 			end
-
+		end
+	@mover.suggest_hood = @your_scene
+	@mover.save
+	end
   end
 
 end
