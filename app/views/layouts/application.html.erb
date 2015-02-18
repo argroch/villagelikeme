@@ -26,7 +26,7 @@
 
   <% image_array = ['string-lights.jpeg','on-the-boardwalk.jpeg','roof-tops.jpg','shopping-day.jpg','nyc.jpeg'] %>
 
-	<% @image = image_array[rand(image_array.length)] %>
+	<% @image = image_array[0] %>
   <style type="text/css">
   	body {
   	background: url(<%= asset_path @image %>) no-repeat;

@@ -4,16 +4,16 @@
 			<% if @no_scene == true %>
 				<div>
 					<p>
-						Dang! Doesn't look like we have data yet on <%= @mover.moving_to %>. Leave us your email address and we'll let you know where your perfect neighborhood is...as soon as we do! 
+						Dang! We haven't gotten a chance to scope out <%= @mover.moving_to %> just yet! Leave us your email address and we'll let you know where your perfect neighborhood is...as soon as we do! 
 					</p>
 				</div>
 			<% else %>
 				<div>
 					<p>
-						We think <%= @your_scene %>, in <%= @mover.moving_to.capitalize %> would be perfect for you!
+						drum roll please...  looks like <h3> <%= @your_scene %> </h3> in <%= @mover.moving_to.capitalize %> would be a good place to start!
 					</p>
 					<p>
-						This is just the beginning! New features will be coming soon! Leave us your email address if you want to stay updated.
+						..and it begins. Leave us your email address and we'll be sure to tip you off when things REALLY start to get awesome!
 					</p>
 				</div>
 			<% end %>
