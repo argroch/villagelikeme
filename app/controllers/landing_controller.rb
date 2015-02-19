@@ -60,8 +60,8 @@ class LandingController < ApplicationController
 			end
 		end
 	@mover.suggest_hood = @your_scene
-	@mover.save
 	end
+  @mover.save
   end
 
 end
