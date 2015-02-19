@@ -3,19 +3,23 @@ class LandingController < ApplicationController
   end
 
   def thanks
-  	# @answered = false
-  # 	if params[:current_city] != nil
-	 #  	@mover = Mover.new
-	 #  	@mover.current_city = params[:current_city]
-	 #  	@mover.moving_to = params[:moving_to]
-	 #  	@mover.email = params[:email]
-		# 	@mover.save
-		# else
-			@mover = Mover.find(params[:id])
-			@mover.email = params[:email]
-			@mover.save
-			# @answered = true
-		# end
+	
+	def add_email_to_chimp
+		@list_id = "527edff245"
+		gb = Gibbon::API.new
+		gb.lists.subscribe({
+			id: @list_id,
+			double_optin: false,
+			email: {email: @mover.email}
+			})
+    end 
+
+	@mover = Mover.find(params[:id])
+	@mover.email = params[:email]
+	@mover.save
+    if EmailValidator.valid?(@mover.email) 
+    	add_email_to_chimp
+    end
   end
 
   def your_scene

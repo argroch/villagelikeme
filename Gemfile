@@ -17,6 +17,10 @@ end
 #Geocoder for use in neighborhood comparison
 gem 'geocoder'
 
+#gibbon for mailchimp
+gem 'gibbon'
+#Email validation to make sure we don't put trash into our mailing list
+gem 'email_validator', :require => 'email_validator/strict'
 #httparty for the rake task querying zillow api (right now, maybe for other api calls later)
 gem 'httparty'
 # Use SCSS for stylesheets
