@@ -46,9 +46,9 @@ class LandingController < ApplicationController
 	@no_scene = false
 	@walk_score_dif=100
     
-	city_id=City.where(name: @mover.moving_to.downcase)
+	city_id=City.where(name: @mover.moving_to.downcase).take
 	
-	if !city_id 
+	if city_id.nil?
 		@no_scene = true
 	else
 		Neighborhood.where(city_id: city_id.take.id).each do |hood|
