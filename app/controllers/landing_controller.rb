@@ -51,7 +51,7 @@ class LandingController < ApplicationController
 	if city_id.nil?
 		@no_scene = true
 	else
-		Neighborhood.where(city_id: city_id.take.id).each do |hood|
+		Neighborhood.where(city_id: city_id.id).each do |hood|
 			d = @fave_walk_score.to_i-hood.walk_score
 			d = d*(-1) if d < 0
 			if d < @walk_score_dif
