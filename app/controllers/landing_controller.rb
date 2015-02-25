@@ -23,8 +23,7 @@ class LandingController < ApplicationController
   end
 
   def your_scene
-  	@mover = Mover.new
-  	@mover.fave_hood = params[:fave_hood]
+  	@mover = Mover.new(fave_hood: params[:fave_hood])
   	@mover.current_city = params[:current_city]
   	@mover.full_hood_address= [@mover.fave_hood,@mover.current_city].join(', ')
   	if params[:moving_to].downcase == "nyc" 
@@ -34,7 +33,7 @@ class LandingController < ApplicationController
   	else
   		@mover.moving_to = params[:moving_to]
   	end
-	
+	@mover.save
 	lon = @mover.longitude
 	lat = @mover.latitude
 	url = "http://api.walkscore.com/score?format=xml&lat=#{lat}&lon=#{lon}&wsapikey=ffd1c56f9abcf84872116b4cc2dfcf31"
@@ -52,11 +51,18 @@ class LandingController < ApplicationController
 		@no_scene = true
 	else
 		Neighborhood.where(city_id: city_id.id).each do |hood|
-			d = @fave_walk_score.to_i-hood.walk_score
-			d = d*(-1) if d < 0
+			d = @fave_walk_score-hood.walk_score
+			puts "fave: #{@fave_walk_score}"
+			puts "hood: #{hood.walk_score}"
+			puts "d: #{d}"
+			puts "lat lon: #{@mover.latitude}"
+			if d < 0 
+				d = d*(-1) 
+			end
 			if d < @walk_score_dif
 				@your_scene = hood.name
 				@walk_score_dif = d
+				puts "walk score: #{@walk_score_dif}"
 			end
 		end
 	@mover.suggest_hood = @your_scene
