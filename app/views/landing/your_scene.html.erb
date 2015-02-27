@@ -4,32 +4,62 @@
 			<% if @no_scene == true %>
 				<div>
 					<p>
-						Dang! We haven't gotten a chance to scope out <%= @mover.moving_to %> just yet! Leave us your email address and we'll let you know where your perfect neighborhood is...as soon as we do! 
-					</p>
+						Dang! We haven't gotten a chance to scope out <strong><%= @mover.moving_to %></strong> just yet! 
+					</p> 
+<!-- 					<p>
+						Leave us your email address and we'll let you know where your perfect neighborhood is...as soon as we do!  
+					</p> -->
 				</div>
 			<% else %>
 				<div>
 					<p>
 						drum roll please...  looks like <h3> <%= @your_scene %> </h3> in <%= @mover.moving_to.capitalize %> would be a good place to start!
 					</p>
-					<p>
+					<!-- <p>
 						..and it begins. Leave us your email address and we'll be sure to tip you off when things REALLY start to get awesome!
-					</p>
+					</p> -->
 				</div>
 			<% end %>
 			<div>
-				<%= form_tag('/thanks') do %>
-					<div>
-						<%= text_field_tag :email, nil, placeholder: "Email Address", class: "placehold-text form-control form-margin" %>
+				<p>
+					Help us find the best neighborhoods in other cities: 
+				</p>
+				<p>
+					What is it you love about <%= @mover.fave_hood %>?
+				</p>
+				<p>
+					<div class="row">
+						<div class="col-md-4 bpad-20">
+							<%= form_tag be_in_touch_path do %>
+								<div class="cant-see-me">
+									<%= number_field_tag :id, @mover.id %>
+									<%= text_field_tag :interest, "Housing" %>
+								</div>
+								<button class="btn btn-primary"><span class="glyphicon glyphicon-home"></span> Housing</button>
+							<% end %>  
+						</div>
+						<div class="col-md-4 bpad-20">
+							<%= form_tag be_in_touch_path do %>
+								<div class="cant-see-me">
+									<%= number_field_tag :id, @mover.id %>
+									<%= text_field_tag :interest, "Restaurants" %>
+								</div>
+								<button class="btn btn-danger"><span class="glyphicon glyphicon-cutlery"></span> Restaurants</button>
+							<% end %> 
+						</div>
+						<div class="col-md-4">
+							<%= form_tag be_in_touch_path do %>
+								<div class="cant-see-me">
+									<%= number_field_tag :id, @mover.id %>
+									<%= text_field_tag :interest, "Entertainment" %>
+								</div>
+								<button class="btn btn-success"><span class="glyphicon glyphicon-glass"></span> Entertainment</button>
+							<% end %>
+						</div>
 					</div>
-					<div class="cant-see-me">
-						<%= number_field_tag :id, @mover.id %>
-					</div>
-					<div class="center-it">
-						<button class="btn btn-primary">We'll Let You Know</button>
-					</div>
-				<% end %>
+				</p>
 			</div>
+
 		</div>
 	</div>
 </div>
