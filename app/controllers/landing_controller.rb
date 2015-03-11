@@ -57,8 +57,11 @@ class LandingController < ApplicationController
 		@your_scene = ""
 		@no_scene = false
 		@walk_score_dif=100
-	    
-		city_id=City.where(name: @mover.moving_to.downcase).take
+	    puts "moving to: #{@mover.moving_to.downcase}"
+	    # Doing a case insensitive find requires a weird declaration of an arel table
+	    # arel tables are used when regular old active record don't cut it
+	    a_table = City.arel_table
+		city_id=City.where(a_table[:name].matches(@mover.moving_to.downcase)).take
 		
 		if city_id.nil?
 			@no_scene = true

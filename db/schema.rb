@@ -11,12 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150226231124) do
+ActiveRecord::Schema.define(version: 20150310031613) do
 
   create_table "cities", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "state"
   end
 
   create_table "movers", force: true do |t|
@@ -41,7 +42,6 @@ ActiveRecord::Schema.define(version: 20150226231124) do
     t.datetime "updated_at"
     t.float    "latitude"
     t.float    "longitude"
-    t.string   "associated_address"
   end
 
 end

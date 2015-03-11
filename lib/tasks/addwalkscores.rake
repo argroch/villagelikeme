@@ -5,6 +5,9 @@ task :addwalkscores => :environment do
 	# 	puts x.name
 	# end
 	#X1-ZWz1ayk4b0m32j_a3t9yj
+	#Api Keys:
+	#1. ffd1c56f9abcf84872116b4cc2dfcf31
+	#2. b72221d8763203418d081f140357696e
 	hoods = Neighborhood.all
 	hoods.each do |n|
 	 	lat = n.latitude
