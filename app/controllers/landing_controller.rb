@@ -103,6 +103,11 @@ class LandingController < ApplicationController
 	  	poi["Longitude"] = venue_info["venue"]["location"]["lng"]
 	  	@points_of_interest.push(poi)
 	  end
+
+	  puts "*************"
+	  puts @points_of_interest
+	  puts "*************"
+
   end
 
 
