@@ -90,24 +90,19 @@ class LandingController < ApplicationController
 
 	  @coordinates = Geocoder.coordinates("#{@mover.suggest_hood}, #{@mover.moving_to}")
 
-	  @c_id= "JTJPGDPMMF3INLQ2BMDJJO4HPKQVLC4CFABKZ3NK43MSWXRD"
-		@c_s= "210FXLWIFFMUHNW2JMJUFYQ2LQGKJAFUSN3FV1W2KVWAXW15"
-	  url = "https://api.foursquare.com/v2/venues/explore?ll=#{@coordinates[0]},#{@coordinates[1]}&client_id=#{@c_id}&client_secret=#{@c_s}&v=20150309&limit=10"
+	  url = "https://api.foursquare.com/v2/venues/explore?ll=#{@coordinates[0]},#{@coordinates[1]}&client_id=#{ENV['foursquare_id']}&client_secret=#{ENV['foursquare_secret']}&v=20150309&limit=10"
 	  response = HTTParty.get(url)
 	  @points_of_interest = []
 	  response["response"]["groups"].first["items"].each do |venue_info|
 	  	poi = Hash.new
 	  	poi["Name"] = venue_info["venue"]["name"]
-	  	venue_info["venue"]["categories"].first do |x|
-	  		poi["Category"] = x["name"]
-	  	end
+	  	poi["Category"] = venue_info["venue"]["categories"].first["name"]
 	  	poi["Website"] = venue_info["venue"]["url"]
 	  	poi["Rating"] = venue_info["venue"]["rating"]
 	  	poi["Latitude"] = venue_info["venue"]["location"]["lat"]
 	  	poi["Longitude"] = venue_info["venue"]["location"]["lng"]
 	  	@points_of_interest.push(poi)
 	  end
-
   end
 
 

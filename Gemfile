@@ -17,6 +17,8 @@ end
 #Geocoder for use in neighborhood comparison
 gem 'geocoder'
 
+gem 'figaro'
+
 #gibbon for mailchimp
 gem 'gibbon'
 #Email validation to make sure we don't put trash into our mailing list

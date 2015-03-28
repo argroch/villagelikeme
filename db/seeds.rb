@@ -1035,8 +1035,7 @@ cities = City.all
 
 
 neighborhood_hash = Hash.new
-@c_id= "JTJPGDPMMF3INLQ2BMDJJO4HPKQVLC4CFABKZ3NK43MSWXRD"
-@c_s= "210FXLWIFFMUHNW2JMJUFYQ2LQGKJAFUSN3FV1W2KVWAXW15"
+
 cities.each do |city|
     @name = city.name
     #replace any whitespace in the city name with a uri friendly %20
@@ -1044,7 +1043,7 @@ cities.each do |city|
     puts @name
     @id = city.id
     @state= city.state
-    url = "https://api.foursquare.com/v2/venues/explore?near=#{@name},%20#{@state}&client_id=#{@c_id}&client_secret=#{@c_s}&v=20150309&limit=50"
+    url = "https://api.foursquare.com/v2/venues/explore?near=#{@name},%20#{@state}&client_id=#{ENV['foursquare_id']}&client_secret=#{ENV['foursquare_secret']}&v=20150309&limit=50"
     #give me a list of interesting places according to foursquare related to the metro area    
 	response = HTTParty.get(url)
 	#for each explore response returned by 4 square, convert to lat/long
