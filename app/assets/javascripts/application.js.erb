@@ -1,0 +1,112 @@
+// This is a manifest file that'll be compiled into application.js, which will include all the files
+// listed below.
+//
+// Any JavaScript/Coffee file within this directory, lib/assets/javascripts, vendor/assets/javascripts,
+// or vendor/assets/javascripts of plugins, if any, can be referenced here using a relative path.
+//
+// It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
+// compiled file.
+//
+// Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
+// about supported directives.
+//
+//= require jquery
+//= require jquery_ujs
+//= require turbolinks
+//= require_tree .
+
+$(document).ready(function(){
+	function initialize() {
+		var myLatlng = new google.maps.LatLng(latitude, longitude)
+	  var mapOptions = {
+	  	center: myLatlng,
+	    zoom: 14,
+	    scrollwheel: false
+	  };
+
+	  var map = new google.maps.Map(document.getElementById('map-canvas'),
+	      mapOptions);
+
+	  var arrLen = points_of_interest.length;
+
+	  // for (var j = 0; j < 10; j++) {
+	  // 	// points_of_interest[j] = JSON.parse(points_of_interest[j]);
+	  // 	console.log(points_of_interest[j]);
+	  // }
+
+	  for (var i = 0; i < arrLen; i++) {
+	  	// var venue = JSON.parse(points_of_interest[i]);
+	  	// console.log();
+	  	for (var k in points_of_interest[i]) {
+	  		if (points_of_interest[i].hasOwnProperty(k)) {
+	  			if (k == "Latitude") {
+	  				var lat = points_of_interest[i][k]
+	  			}
+	  			if (k == "Longitude") {
+	  				var lng = points_of_interest[i][k]
+	  			}
+	  			if (k == "Name") {
+	  				var venue_name = points_of_interest[i][k]
+	  			}
+	  			// console.log(lat);
+	  			// console.log(lng);
+	  			var venueLatlng = new google.maps.LatLng(lat, lng);
+				  var marker = new google.maps.Marker({
+				  	position: venueLatlng,
+				  	map: map,
+				  });
+
+					(function(marker, i) {
+              // add click event
+              google.maps.event.addListener(marker, 'click', function() {
+                  infowindow = new google.maps.InfoWindow({
+                      content: venue_name
+                  });
+                  infowindow.open(map, marker);
+              });
+          })(marker, i);
+
+					// var contentString = '<div>' + venue_name + '</div>';
+
+				 //  var infowindow = new google.maps.InfoWindow({
+				 //      content: contentString
+				 //  });
+
+
+			  // 	google.maps.event.addListener(marker, 'click', function() { 
+			  // 		infowindow.open(map,marker);
+					// });
+			  }
+			}
+	  }
+
+
+	 //  var marker = new google.maps.Marker({
+	 //  	position: myLatlng,
+	 //  	map: map,
+	 //  	title: 'Your New Scene'
+	 //  });
+
+		// var contentString = '<div>Your new scene.</div>';
+
+	 //  var infowindow = new google.maps.InfoWindow({
+	 //      content: contentString
+	 //  });
+
+
+	  // var image = "<%= asset_path 'sbw_logo.png' %>";
+  	// var marker = new google.maps.Marker({
+   //    position: myLatlng,
+   //    map: map,
+   //    icon: image,
+   //    animation: google.maps.Animation.BOUNCE,
+   //    draggable: true
+  	// });
+
+  // 	google.maps.event.addListener(marker, 'click', function() { 
+  // 		infowindow.open(map,marker);
+		// });
+
+	}
+	google.maps.event.addDomListener(window, 'load', initialize);
+});

@@ -11,6 +11,8 @@ Rails.application.routes.draw do
 
   post 'be_in_touch' => 'landing#email_collect'
 
+  post 'old_scene' => 'landing#old_scene'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

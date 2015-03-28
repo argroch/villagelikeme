@@ -11,55 +11,22 @@
 					</p> -->
 				</div>
 			<% else %>
+				<p>Welcome to...</p>
+				<div class="limelight"><%= @your_scene %></div>
 				<div>
-					<p>
-						drum roll please...  looks like <h3> <%= @your_scene %> </h3> in <%= @mover.moving_to.capitalize %> would be a good place to start!
-					</p>
-					<!-- <p>
-						..and it begins. Leave us your email address and we'll be sure to tip you off when things REALLY start to get awesome!
-					</p> -->
+					<p>Click on the pins to see what <%= @your_scene %> has to offer!</p>
 				</div>
+				<div id="map-canvas"></div>
 			<% end %>
-			<div>
-				<p>
-					Help us find the best neighborhoods in other cities: 
-				</p>
-				<p>
-					What is it you love about <%= @mover.fave_hood %>?
-				</p>
-				<p>
-					<div class="row">
-						<div class="col-md-4 bpad-20">
-							<%= form_tag be_in_touch_path do %>
-								<div class="cant-see-me">
-									<%= number_field_tag :id, @mover.id %>
-									<%= text_field_tag :interest, "Housing" %>
-								</div>
-								<button class="btn btn-primary"><span class="glyphicon glyphicon-home"></span> Housing</button>
-							<% end %>  
-						</div>
-						<div class="col-md-4 bpad-20">
-							<%= form_tag be_in_touch_path do %>
-								<div class="cant-see-me">
-									<%= number_field_tag :id, @mover.id %>
-									<%= text_field_tag :interest, "Restaurants" %>
-								</div>
-								<button class="btn btn-danger"><span class="glyphicon glyphicon-cutlery"></span> Restaurants</button>
-							<% end %> 
-						</div>
-						<div class="col-md-4">
-							<%= form_tag be_in_touch_path do %>
-								<div class="cant-see-me">
-									<%= number_field_tag :id, @mover.id %>
-									<%= text_field_tag :interest, "Entertainment" %>
-								</div>
-								<button class="btn btn-success"><span class="glyphicon glyphicon-glass"></span> Entertainment</button>
-							<% end %>
-						</div>
-					</div>
-				</p>
-			</div>
-
 		</div>
 	</div>
 </div>
+
+<%= javascript_tag do %>
+  latitude = '<%= j @coordinates[0].to_s %>';
+  longitude = '<%= j @coordinates[1].to_s %>';
+  var points_of_interest = [];
+	<% @points_of_interest.each do |poi| %>
+		points_of_interest.push(<%= poi.to_json.html_safe %>);
+	<% end %>
+<% end %>
