@@ -53,7 +53,7 @@ $(document).ready(function(){
 	  				var rating = arrayItem[k]
 	  			}
 	  			if (k == "Website") {
-	  				var website = arrayItem[k]
+		  			var website = arrayItem[k]
 	  			}
 
 	  			if (typeof lat !== 'undefined' && typeof lng != 'undefined') {
@@ -66,8 +66,11 @@ $(document).ready(function(){
 					  });
 
 						var infowindow = new google.maps.InfoWindow();
-						var content = "<p>" + venue_name + "<br /> <a href='" + website + "' target='_blank'>Visit Online</a><br /> Rating: " + rating + "</p>";
-
+						if (website != null ) {
+							var content = "<p>" + venue_name + "<br /> <a href='" + website + "' target='_blank'>Visit Online</a><br /> Rating: " + rating + "</p>";
+						} else {
+							var content = "<p>" + venue_name + "<br /> Rating: " + rating + "</p>";
+						}
 						
 							
 						google.maps.event.addListener(marker,'click', (function(marker,content,infowindow){ 
