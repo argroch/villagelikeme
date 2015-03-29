@@ -34,49 +34,52 @@ $(document).ready(function(){
 	  // 	console.log(points_of_interest[j]);
 	  // }
 
-	  for (var i = 0; i < arrLen; i++) {
+	  //for (var i = 0; i < arrLen; i++) {
+	  points_of_interest.forEach( function (arrayItem) {	
 	  	// var venue = JSON.parse(points_of_interest[i]);
-	  	// console.log();
-	  	for (var k in points_of_interest[i]) {
-	  		if (points_of_interest[i].hasOwnProperty(k)) {
+	  	//console.log(points_of_interest[i]);
+	  	for (var k in arrayItem) {
+	  		if (arrayItem.hasOwnProperty(k)) {
 	  			if (k == "Latitude") {
-	  				var lat = points_of_interest[i][k]
+	  				var lat = arrayItem[k]
 	  			}
 	  			if (k == "Longitude") {
-	  				var lng = points_of_interest[i][k]
+	  				var lng = arrayItem[k]
 	  			}
 	  			if (k == "Name") {
-	  				var venue_name = points_of_interest[i][k]
+	  				var venue_name = arrayItem[k]
 	  			}
 	  			if (k == "Rating") {
-	  				var rating = points_of_interest[i][k]
+	  				var rating = arrayItem[k]
 	  			}
 	  			if (k == "Website") {
-	  				var website = points_of_interest[i][k]
+	  				var website = arrayItem[k]
 	  			}
 
-	  			var venueLatlng = new google.maps.LatLng(lat, lng);
-				  var marker = new google.maps.Marker({
-				  	position: venueLatlng,
-				  	map: map
-				  	//icon: image
-				  });
+	  			if (typeof lat !== 'undefined' && typeof lng != 'undefined') {
+		  			var venueLatlng = new google.maps.LatLng(lat, lng);
+		  			console.log(venueLatlng);
+					  var marker = new google.maps.Marker({
+					  	position: venueLatlng,
+					  	map: map
+					  	//icon: image
+					  });
 
-					var infowindow = new google.maps.InfoWindow();
-					var content = "<p>" + venue_name + "<br /> <a href='" + website + "' target='_blank'>Visit Online</a><br /> Rating: " + rating + "</p>";
+						var infowindow = new google.maps.InfoWindow();
+						var content = "<p>" + venue_name + "<br /> <a href='" + website + "' target='_blank'>Visit Online</a><br /> Rating: " + rating + "</p>";
 
-					
 						
-					google.maps.event.addListener(marker,'click', (function(marker,content,infowindow){ 
-					    return function() {
-					        infowindow.setContent(content);
-					        infowindow.open(map,marker);
-					    };
-					})(marker,content,infowindow));
-
+							
+						google.maps.event.addListener(marker,'click', (function(marker,content,infowindow){ 
+						    return function() {
+						        infowindow.setContent(content);
+						        infowindow.open(map,marker);
+						    };
+						})(marker,content,infowindow));
+					}
 			  }
 			}
-	  }
+	  });
 
 
 	 //  var marker = new google.maps.Marker({
