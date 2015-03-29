@@ -41,19 +41,22 @@ $(document).ready(function(){
 	  	for (var k in arrayItem) {
 	  		if (arrayItem.hasOwnProperty(k)) {
 	  			if (k == "Latitude") {
-	  				var lat = arrayItem[k]
+	  				var lat = arrayItem[k];
 	  			}
 	  			if (k == "Longitude") {
-	  				var lng = arrayItem[k]
+	  				var lng = arrayItem[k];
 	  			}
 	  			if (k == "Name") {
-	  				var venue_name = arrayItem[k]
+	  				var venue_name = arrayItem[k];
 	  			}
 	  			if (k == "Rating") {
-	  				var rating = arrayItem[k]
+	  				var rating = arrayItem[k];
 	  			}
 	  			if (k == "Website") {
-		  			var website = arrayItem[k]
+		  			var website = arrayItem[k];
+	  			}
+	  			if (k == "Tip") {
+		  			var tip = arrayItem[k];
 	  			}
 
 	  			if (typeof lat !== 'undefined' && typeof lng != 'undefined') {
@@ -67,18 +70,23 @@ $(document).ready(function(){
 
 						var infowindow = new google.maps.InfoWindow();
 						if (website != null ) {
-							var content = "<p>" + venue_name + "<br /> <a href='" + website + "' target='_blank'>Visit Online</a><br /> Rating: " + rating + "</p>";
+							var content = "<p>" + venue_name + "<br /> <a href='" + website + "' target='_blank'>Visit Online</a><br /> Rating: " + rating + "<br /> " + tip + "</p>";					
 						} else {
-							var content = "<p>" + venue_name + "<br /> Rating: " + rating + "</p>";
+							var content = "<p>" + venue_name + "<br /> Rating: " + rating + "<br /> " + tip + "</p>";
 						}
 						
-							
-						google.maps.event.addListener(marker,'click', (function(marker,content,infowindow){ 
-						    return function() {
-						        infowindow.setContent(content);
-						        infowindow.open(map,marker);
-						    };
-						})(marker,content,infowindow));
+						google.maps.event.addListener(marker,'click',
+							function(){
+								infowindow.setContent(content);
+					 			infowindow.open(map,marker);
+							}
+						);	
+						// google.maps.event.addListener(marker,'click', (function(marker,content,infowindow){ 
+						//     return function() {
+					 //        infowindow.setContent(content);
+					 //        infowindow.open(map,marker);
+						//     };
+						// })(marker,content,infowindow));
 					}
 			  }
 			}

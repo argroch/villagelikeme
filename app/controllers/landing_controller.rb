@@ -93,7 +93,7 @@ class LandingController < ApplicationController
 	  url = "https://api.foursquare.com/v2/venues/explore?ll=#{@coordinates[0]},#{@coordinates[1]}&client_id=#{ENV['foursquare_id']}&client_secret=#{ENV['foursquare_secret']}&v=20150309&limit=10"
 	  response = HTTParty.get(url)
 	  @points_of_interest = []
-	  response["response"]["groups"].first["items"].each_with_index do |venue_info, index|
+	  response["response"]["groups"].first["items"].each do |venue_info|
 	  	poi = Hash.new
 	  	poi["Name"] = venue_info["venue"]["name"]
 	  	poi["Category"] = venue_info["venue"]["categories"].first["name"]
@@ -101,6 +101,7 @@ class LandingController < ApplicationController
 	  	poi["Rating"] = venue_info["venue"]["rating"]
 	  	poi["Latitude"] = venue_info["venue"]["location"]["lat"]
 	  	poi["Longitude"] = venue_info["venue"]["location"]["lng"]
+	  	poi["Tip"] = venue_info["tips"].first["text"]
 	  	@points_of_interest.push(poi)
 	  end
 
