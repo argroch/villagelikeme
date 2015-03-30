@@ -88,6 +88,31 @@ class LandingController < ApplicationController
 		end
 	  @mover.save
 
+	  if @mover.moving_to.include? " "
+	  	zillow_city = @mover.moving_to.sub " ", "-"
+	  	yelp_city = @mover.moving_to.sub " ", "+"
+	  	stub_hub_city = @mover.moving_to.sub " ", "%20"
+	  else
+	  	zillow_city = @mover.moving_to
+	  	yelp_city = @mover.moving_to
+	  	stub_hub_hood = @mover.moving_to
+	  end
+
+	  if @mover.suggest_hood.include? " "
+	  	zillow_hood = @mover.suggest_hood.sub " ", "-"
+	  	yelp_hood = @mover.suggest_hood.sub " ", "+"
+	  	stub_hub_hood = @mover.suggest_hood.sub " ", "%20"
+	  else
+	  	zillow_hood = @mover.suggest_hood
+	  	yelp_hood = @mover.suggest_hood
+	  	stub_hub_hood = @mover.suggest_hood
+	  end
+
+
+	  @zillow_url = "http://www.zillow.com/homes/#{zillow_hood}-#{zillow_city}_rb/"
+	  @yelp_url = "http://www.yelp.com/search?find_desc=Restaurants&find_loc=#{yelp_hood}%2C+#{yelp_city}&ns=1"
+	  @stub_hub_url = "http://www.stubhub.com/search/doSearch?searchStr=#{stub_hub_hood},%20#{stub_hub_city}&pageNumber=1&resultsPerPage=50&searchMode=event&start=0&rows=50&geo_exp=1"
+
 	  @coordinates = Geocoder.coordinates("#{@mover.suggest_hood}, #{@mover.moving_to}")
 
 	  url = "https://api.foursquare.com/v2/venues/explore?ll=#{@coordinates[0]},#{@coordinates[1]}&client_id=#{ENV['foursquare_id']}&client_secret=#{ENV['foursquare_secret']}&v=20150309&limit=10"
@@ -96,12 +121,48 @@ class LandingController < ApplicationController
 	  response["response"]["groups"].first["items"].each do |venue_info|
 	  	poi = Hash.new
 	  	poi["Name"] = venue_info["venue"]["name"]
-	  	poi["Category"] = venue_info["venue"]["categories"].first["name"]
 	  	poi["Website"] = venue_info["venue"]["url"]
 	  	poi["Rating"] = venue_info["venue"]["rating"]
 	  	poi["Latitude"] = venue_info["venue"]["location"]["lat"]
 	  	poi["Longitude"] = venue_info["venue"]["location"]["lng"]
 	  	poi["Tip"] = venue_info["tips"].first["text"]
+
+	  	poi["Category"] = venue_info["venue"]["categories"].first["name"]
+	  	poi["Caticon"] = ""
+	  	if poi["Category"].downcase.include? "restaurant"
+	  		poi["Caticon"] = '/assets/restaurant1.png'
+	  	elsif poi["Category"].downcase.include? "breakfast"
+	  		poi["Caticon"] = '/assets/breakfast1.png'
+	  	elsif poi["Category"].downcase.include? "coffee"
+	  		poi["Caticon"] = '/assets/coffee1.png'
+	  	elsif poi["Category"].downcase.include? "ice cream"
+	  		poi["Caticon"] = '/assets/ice_cream1.png'
+	  	elsif poi["Category"].downcase.include? "museum"
+	  		poi["Caticon"] = '/assets/museum1.png'
+	  	elsif poi["Category"].downcase.include? "park"
+	  		poi["Caticon"] = '/assets/park1.png'
+	  	elsif poi["Category"].downcase.include? "club"
+	  		poi["Caticon"] = '/assets/club1.png'
+	  	elsif poi["Category"].downcase.include? "city"
+	  		poi["Caticon"] = '/assets/city1.jpeg'
+	  	elsif poi["Category"].downcase.include? "shop"
+	  		poi["Caticon"] = '/assets/shop1.png'
+	  	elsif poi["Category"].downcase.include? "bar"
+	  		poi["Caticon"] = '/assets/club1.png'
+	  	elsif poi["Category"].downcase.include? "caf"
+	  		poi["Caticon"] = '/assets/coffee1.png'
+	  	elsif poi["Category"].downcase.include? "bakery"
+	  		poi["Caticon"] = '/assets/bakery1.png'
+	  	elsif poi["Category"].downcase.include? "grocery"
+	  		poi["Caticon"] = '/assets/grocery1.png'
+	  	elsif poi["Category"].downcase.include? "supermarket"
+	  		poi["Caticon"] = '/assets/grocery1.png'
+	  	elsif poi["Category"].downcase.include? "zoo"
+	  		poi["Caticon"] = '/assets/zoo1.png'
+	  	elsif poi["Category"].downcase.include? "garden"
+	  		poi["Caticon"] = '/assets/garden1.jpeg'
+	  	end
+
 	  	@points_of_interest.push(poi)
 	  end
 

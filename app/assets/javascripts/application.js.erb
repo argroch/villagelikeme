@@ -55,24 +55,30 @@ $(document).ready(function(){
 	  			if (k == "Website") {
 		  			var website = arrayItem[k];
 	  			}
+	  			if (k == "Category") {
+		  			var category = arrayItem[k];
+	  			}
 	  			if (k == "Tip") {
 		  			var tip = arrayItem[k];
+	  			}
+	  			if (k == "Caticon") {
+		  			var cat_icon = arrayItem[k];
 	  			}
 
 	  			if (typeof lat !== 'undefined' && typeof lng != 'undefined') {
 		  			var venueLatlng = new google.maps.LatLng(lat, lng);
-		  			console.log(venueLatlng);
+		  			// var image = "<img src='" + cat_icon + "' alt='" + category + "' />";
 					  var marker = new google.maps.Marker({
 					  	position: venueLatlng,
 					  	map: map
-					  	//icon: image
+					  	// icon: image
 					  });
 
 						var infowindow = new google.maps.InfoWindow();
 						if (website != null ) {
-							var content = "<p>" + venue_name + "<br /> <a href='" + website + "' target='_blank'>Visit Online</a><br /> Rating: " + rating + "<br /> " + tip + "</p>";					
+							var content = "<div class='row'><div class='col-sm-3 mtop-30'><img src='" + cat_icon + "' alt='" + category + "' class='cat-icon' /></div><div class='col-sm-9'><p>" + venue_name + "<br /> <a href='" + website + "' target='_blank'>Visit Online</a><br /> Category: " + category + "<br /> Rating: " + rating + "<br /> " + tip + "</p></div></div>";					
 						} else {
-							var content = "<p>" + venue_name + "<br /> Rating: " + rating + "<br /> " + tip + "</p>";
+							var content = "<div class='row'><div class='col-sm-3 mtop-30'><img src='" + cat_icon + "' alt='" + category + "' class='cat-icon' /></div><div class='col-sm-9'><p>" + venue_name + "<br /> Category: " + category + "<br /> Rating: " + rating + "<br /> " + tip + "</p></div></div>";
 						}
 						
 						google.maps.event.addListener(marker,'click',

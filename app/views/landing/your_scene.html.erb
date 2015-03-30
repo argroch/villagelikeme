@@ -19,6 +19,29 @@
 				</div>
 				<div id="map-canvas"></div>
 			<% end %>
+			<div class="row">
+				<div class="col-md-4 center-it">
+					<button class="btn btn-primary">
+						<a href=<%= "#{@zillow_url}" %> target="_blank" class="white-text">
+							<span class="glyphicon glyphicon-home"></span> Housing
+						</a>
+					</button>
+				</div>
+				<div class="col-md-4 center-it">
+					<button class="btn btn-danger">
+						<a href=<%= "#{@yelp_url}" %> target="_blank" class="white-text">
+							<span class="glyphicon glyphicon-cutlery"></span> Eating
+						</a>
+					</button>
+				</div>
+				<div class="col-md-4 center-it">
+					<button class="btn btn-warning">
+						<a href=<%= "#{@stub_hub_url}" %> target="_blank" class="white-text">
+							<span class="glyphicon glyphicon-sunglasses"></span> Going Out
+						</a>
+					</button>
+				</div>
+			</div>
 		</div>
 
 </div>
