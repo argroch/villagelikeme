@@ -34,19 +34,25 @@ p {
 	width: 60%;
 }
 
-.main-box{
+.landing-main-box, .your-scene-main-box{
 	padding: 20px;
 	background: rgba(255,255,255,0.8);
 	border-radius: 15px;
 }
 
-.page-center{
+.landing-page-center{
   position: fixed;
   top: 50%;
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }​
+
+.your-scene-center {
+	position: fixed;
+	left: 20%;
+	margin: 10px;
+}
 
 .placehold-text {
 	color: #BDBDBD;
@@ -76,9 +82,9 @@ p {
 	margin-top: 30px;
 }
 
-.tb-pad {
-	padding-top: 40px;
-	padding-bottom: 40px;
+.tb-margin {
+	margin-top: 20px;
+	margin-bottom: 20px;
 }
 
 a.white-text {
@@ -117,7 +123,7 @@ a.white-text {
 }
 
 @media screen and (max-width: 550px){
-	.main-box{
+	.landing-main-box{
 		width: 350px;
 		padding: 20px;
 	}

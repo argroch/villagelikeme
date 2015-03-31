@@ -161,6 +161,8 @@ class LandingController < ApplicationController
 	  		poi["Caticon"] = '/assets/zoo1.png'
 	  	elsif poi["Category"].downcase.include? "garden"
 	  		poi["Caticon"] = '/assets/garden1.jpeg'
+	  	elsif poi["Category"].downcase.include? "yogurt"
+	  		poi["Caticon"] = '/assets/ice_cream1.jpeg'
 	  	end
 
 	  	@points_of_interest.push(poi)

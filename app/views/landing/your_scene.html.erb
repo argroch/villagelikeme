@@ -1,4 +1,4 @@
-<div class="page-center main-box width60percent">
+<div class="your-scene-main-box tb-margin">
 
 		<div class="center-it">
 			<% if @no_scene == true %>
@@ -20,14 +20,14 @@
 				<div id="map-canvas"></div>
 			<% end %>
 			<div class="row">
-				<div class="col-md-4 center-it">
+				<div class="col-md-4 center-it bpad-20">
 					<button class="btn btn-primary">
 						<a href=<%= "#{@zillow_url}" %> target="_blank" class="white-text">
 							<span class="glyphicon glyphicon-home"></span> Housing
 						</a>
 					</button>
 				</div>
-				<div class="col-md-4 center-it">
+				<div class="col-md-4 center-it bpad-20">
 					<button class="btn btn-danger">
 						<a href=<%= "#{@yelp_url}" %> target="_blank" class="white-text">
 							<span class="glyphicon glyphicon-cutlery"></span> Eating
