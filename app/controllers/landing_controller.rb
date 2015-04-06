@@ -115,11 +115,6 @@ class LandingController < ApplicationController
 
 	  @coordinates = Geocoder.coordinates("#{@mover.suggest_hood}, #{@mover.moving_to}")
 
-	  puts "**************"
-	  puts "#{ENV['foursquare_id']}"
-	  puts "**************"
-
-
 	  url = "https://api.foursquare.com/v2/venues/explore?ll=#{@coordinates[0]},#{@coordinates[1]}&client_id=#{ENV['foursquare_id']}&client_secret=#{ENV['foursquare_secret']}&v=20150309&limit=10"
 	  response = HTTParty.get(url)
 	  @points_of_interest = []
